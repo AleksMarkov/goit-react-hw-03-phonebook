@@ -4,29 +4,32 @@ import { nanoid } from 'nanoid';
 import styles from './contact-form.module.css';
 
 const INITIAL_STATE = {
-  contacts: [],
   name: '',
   number: '',
 };
 
 class ContactForm extends Component {
   phoneBookID = nanoid();
+  phoneNumberID = nanoid();
 
   state = {
     ...INITIAL_STATE,
   };
 
   handleChange = ({ target }) => {
-    const { name, number, value } = target;
+    const { name, value } = target;
 
     this.setState({ [name]: value });
-    this.setState({ [number]: value });
+    // this.setState({ [number]: value });
+    // console.log('handleChange');
+    // console.log(this.state);
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    // console.log(this.props);
+
     this.props.onSubmit({ ...this.state });
+
     this.reset();
   };
 
